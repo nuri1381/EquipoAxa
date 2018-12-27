@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="row  mt-2 mb-3 ml-2 mt-5">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Search:</label>
+        <input [(ngModel)]="parametro" class="form-control " type="text" (keyup.enter)="buscarSites(buscar)" placeholder="
+        things you can see"
+          #buscar="ngModel" name="busqueda">
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="!sea">
+    No hay nada que mostrar para el genero {{ parametro }}
+  </div>
+
+  <div class="card-columns" *ngIf ="array.length>0" cdkDropList (cdkDropListDropped)="drop($event)" >
+    <div class="card" *ngFor="let site of array" cdkDrag>
+      <img class="card-img-top img-responsive" [src]="site.thumbnail" [alt]="site.name">
+      <div class="card-body">
+        <h5 class="card-title">Name: {{ site.name }}</h5>
+        <p class="card-text">Age: {{ site.age }}</p>
+        <p class="card-text">hair_color: {{ site.hair_color }}</p>
+
+        <p class="card-text">Professions: {{ site.professions }}</p>
+        <a class="btn btn-outline-primary btn-block text-center" [routerLink]="['/detalle',site.id]">Ver más!!!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer *ngIf="! footer"></app-footer>

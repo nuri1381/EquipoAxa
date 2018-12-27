@@ -1,0 +1,34 @@
+<app-louding *ngIf="loading"></app-louding>
+
+<div class="row" *ngIf="! loading">
+  <div class="col ml-2 "><button type="button" class="btn btn-secondary text-white" (click)="irFinal()">Ir al Final</button></div>
+  <div class="col"><button type="button" class="btn btn-secondary text-center btn-ttc" (click)="irInicio()">Ir al Inicio</button></div>
+  <div class="col"><button type="button"  class="btn btn-secondary text-center btn-ttc" (click)="irMedio()">Ir al Medio</button></div>
+</div>
+<h3  *ngIf="! loading" class="text-center"> Cosas que puedes ver en Brastlewark</h3>
+<cdk-virtual-scroll-viewport itemSize="50" class="list-container">
+  <table *ngIf="!loading" class="table table-striped table-responsive">
+    <tr class="">
+      <th>thumbnail</th>
+      <th>name</th>
+      <th>age</th>
+      <th>professions</th>
+      <th>hair_color</th>
+      <th>friends</th>
+      <th>Acciones</th>
+    </tr>
+    <tr class="" *cdkVirtualFor="let i of lista">
+      <td><img class="img1" [src]="i.thumbnail"></td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.age }}</td>
+      <td>{{ i.professions }}</td>
+      <!--<th>{{ i.weight }}</th>
+      <th>{{ i.height }}</th>-->
+      <td>{{ i.hair_color }}</td>
+      <td>{{ i.friends }}</td>
+      <td><button type="button" (click)="getDetalles(i.id)"><i class="text-primary fas fa-search"></i></button></td>
+      <!--<th><a [routerLink]="['/detalle',i.id]" ><i class="fas fa-search"></i></a></th>-->
+    </tr>
+  </table>
+</cdk-virtual-scroll-viewport>
+<app-footer2></app-footer2>
